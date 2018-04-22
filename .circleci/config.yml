@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python
     environment:
-      CODECOV_TOKEN: 07a918bb-31b1-49fc-b4d9-55db4858a3fd
+      CODECOV_TOKEN: 9bd5f93d-e0a4-4a8c-ab00-1870f95baa80
       CACHE_KEY: "pyenv local 2.7.13 3.3.6 3.4.6 3.5.3 3.6.2"
     steps:
       - checkout
