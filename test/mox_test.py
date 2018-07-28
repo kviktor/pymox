@@ -984,7 +984,7 @@ class MockObjectTest(unittest.TestCase):
         mock_object = mox.MockObject(mox_test_helper.MyTestFunction)
         self.assertEqual(
             mock_object._description,
-            'function mox_test_helper.MyTestFunction')
+            'function test.mox_test_helper.MyTestFunction')
 
     def testDescriptionMockedObject(self):
         obj = FarAwayClass()
@@ -1006,7 +1006,7 @@ class MockObjectTest(unittest.TestCase):
         mock.ReplayAll()
         self.assertEqual(
             mox_test_helper.MyTestFunction._description,
-            'function mox_test_helper.MyTestFunction')
+            'function test.mox_test_helper.MyTestFunction')
 
     def testDescriptionMockedClass(self):
         obj = FarAwayClass()
@@ -1040,7 +1040,7 @@ class MockObjectTest(unittest.TestCase):
         self.assertIn(
             mox_test_helper.SpecialClass.StaticMethod._description,
             ['SpecialClass.StaticMethod',
-             'function mox_test_helper.StaticMethod'])
+             'function test.mox_test_helper.StaticMethod'])
 
     def testDescriptionStaticMethodMockInstance(self):
         obj = mox_test_helper.SpecialClass()
@@ -1053,7 +1053,7 @@ class MockObjectTest(unittest.TestCase):
         self.assertIn(
             obj.StaticMethod._description,
             ['SpecialClass.StaticMethod',
-             'function mox_test_helper.StaticMethod'])
+             'function test.mox_test_helper.StaticMethod'])
 
     def testSetupModeWithValidCall(self):
         """Verify the mock object properly mocks a basic method call."""
