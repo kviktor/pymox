@@ -22,7 +22,6 @@ from os.path import basename
 from os.path import splitext
 
 from setuptools import find_packages
-from pip.req import parse_requirements
 
 try:
     from pip._internal.req import parse_requirements
@@ -80,7 +79,6 @@ setup(
     install_requires=install_reqs,
     setup_requires=['pytest-runner'],
     tests_require=['tox', 'pytest', 'pytest-cov', 'coverage'],
-    install_requires=install_reqs,
     long_description=('%s\n%s' % (
         read('README.rst'),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')))
@@ -89,7 +87,6 @@ setup(
     author_email='ivan.cr.neto@gmail.com',
     packages=find_packages('.'),
     package_dir={'': '.'},
-    py_modules=[splitext(basename(path))[0] for path in glob('./*.py')],
     zip_safe=False,
     classifiers=classifier_list,
     keywords=[
