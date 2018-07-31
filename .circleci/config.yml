@@ -15,6 +15,11 @@ jobs:
           - v1-dependencies-
       - run:
           command: |
+            sudo apt-get install -yq make build-essential libssl-dev zlib1g-dev libbz2-dev
+            sudo apt-get install -yq libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev
+            sudo apt-get install -yq xz-utils tk-dev libffi-dev
+      - run:
+          command: |
             sudo pip install codecov==1.6.3 six
             sudo pip install tox tox-pyenv flake8
       - run:
