@@ -22,6 +22,7 @@ from os.path import basename
 from os.path import splitext
 
 from setuptools import find_packages
+from pip.req import parse_requirements
 
 try:
     from setuptools import setup
@@ -60,6 +61,7 @@ Topic :: Utilities
 """
 
 classifier_list = [c for c in classifiers.split("\n") if c]
+install_reqs = [p.req for p in parse_requirements('requirements.txt')]
 
 setup(
     name='pymox',
@@ -68,9 +70,7 @@ setup(
     license='Apache License, Version 2.0',
     description='Mock object framework',
     include_package_data=True,
-    install_requires=[
-        'six',
-    ],
+    install_requires=install_reqs,
     long_description=('%s\n%s' % (
         read('README.rst'),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))),
