@@ -23,15 +23,12 @@ jobs:
           command: |
             pip install codecov==1.6.3 six
             pip install tox tox-pyenv flake8
-      - run:
-            source ~/.bash_profile
       - save_cache:
           paths:
             - ./.pyenv
           key: v1-dependencies-$CACHE_KEY-{{ checksum "tox.ini" }}
       - run:
           command: |
-            source ~/.bash_profile
             flake8
             tox
       - store_artifacts:
