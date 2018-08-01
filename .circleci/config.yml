@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/pymox
     docker:
-      - image: circleci/python
+      - image: themattrix/tox
     environment:
       CODECOV_TOKEN: 9bd5f93d-e0a4-4a8c-ab00-1870f95baa80
       CACHE_KEY: "pyenv local 2.7.13 3.3.6 3.4.6 3.5.3 3.6.2"
@@ -15,25 +15,20 @@ jobs:
           - v1-dependencies-
       - run:
           command: |
-            sudo pip install codecov==1.6.3 six
-            sudo pip install tox tox-pyenv flake8
+            apt-get update -qq
+            apt-get install -yq make build-essential libssl-dev zlib1g-dev libbz2-dev
+            apt-get install -yq libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev
+            apt-get install -yq xz-utils tk-dev libffi-dev
       - run:
           command: |
-            curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
-            echo 'export PATH="/home/circleci/.pyenv/bin:$PATH"' >>~/.bash_profile
-            echo 'eval "$(pyenv init -)"' >>~/.bash_profile
-            echo 'eval "$(pyenv virtualenv-init -)"' >>~/.bash_profile
-            source ~/.bash_profile
-            parallel -j 5 pyenv install ::: 2.7.13 3.3.6 3.4.6 3.5.3 3.6.2
-            pyenv local 2.7.13 3.3.6 3.4.6 3.5.3 3.6.2
+            pip install codecov==1.6.3 six
+            pip install tox tox-pyenv flake8
       - save_cache:
           paths:
             - ./.pyenv
           key: v1-dependencies-$CACHE_KEY-{{ checksum "tox.ini" }}
       - run:
           command: |
-            source ~/.bash_profile
-            flake8
             tox
       - store_artifacts:
           path: test-reports
