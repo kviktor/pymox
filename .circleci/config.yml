@@ -29,7 +29,6 @@ jobs:
           key: v1-dependencies-$CACHE_KEY-{{ checksum "tox.ini" }}
       - run:
           command: |
-            flake8
             tox
       - store_artifacts:
           path: test-reports
