@@ -73,7 +73,7 @@ setup(
     install_requires=install_reqs,
     long_description=('%s\n%s' % (
         read('README.rst'),
-        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst'))),
+        re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')))
     ),
     author='Ivan Neto',
     author_email='ivan.cr.neto@gmail.com',
