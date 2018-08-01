@@ -22,7 +22,11 @@ from os.path import basename
 from os.path import splitext
 
 from setuptools import find_packages
-from pip.req import parse_requirements
+
+try:
+    from pip._internal.req import parse_requirements
+except ImportError:
+    from pip.req import parse_requirements
 
 try:
     from setuptools import setup
@@ -61,7 +65,8 @@ Topic :: Utilities
 """
 
 classifier_list = [c for c in classifiers.split("\n") if c]
-install_reqs = [p.req for p in parse_requirements('requirements.txt')]
+install_reqs = [str(p.req) for p in parse_requirements(
+    join(dirname(__file__), 'requirements.txt'), session='req')]
 
 setup(
     name='pymox',
