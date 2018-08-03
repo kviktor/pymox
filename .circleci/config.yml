@@ -29,6 +29,7 @@ jobs:
           key: v1-dependencies-$CACHE_KEY-{{ checksum "tox.ini" }}
       - run:
           command: |
+            pyenv local 2.7.13 3.3.6 3.4.5 3.5.2 3.6.0
             tox
       - store_artifacts:
           path: test-reports
