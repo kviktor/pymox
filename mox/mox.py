@@ -73,7 +73,7 @@ import six
 import types
 import unittest
 
-import stubout
+from . import stubout
 
 from re import search as re_search
 

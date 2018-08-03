@@ -21,11 +21,10 @@ import re
 import six
 import sys
 
-import mox
+from mox import mox
 
-import mox_test_helper
-
-from test_helpers.subpackage.faraway import FarAwayClass
+from . import mox_test_helper
+from .test_helpers.subpackage.faraway import FarAwayClass
 
 OS_LISTDIR = mox_test_helper.os.listdir
 
