@@ -1,6 +1,6 @@
 __version__ = u'0.7.8'
 
-from mox import (
+from .mox import (
     And,
     Comparator,
     ContainsAttributeValue,
