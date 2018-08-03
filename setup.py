@@ -68,7 +68,6 @@ install_reqs = [str(p.req) for p in parse_requirements(
 
 setup(
     name='pymox',
-    py_modules=[splitext(basename(path))[0] for path in glob('./**/*.py')],
     url='http://pymox.rtfd.io',
     license='Apache License, Version 2.0',
     description='Mock object framework',
