@@ -21,7 +21,6 @@ jobs:
             apt-get install -yq xz-utils tk-dev libffi-dev git
       - run:
           command: |
-            pip install codecov==1.6.3 six
             pip install tox tox-pyenv flake8
       - save_cache:
           paths:
