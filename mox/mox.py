@@ -73,7 +73,7 @@ import six
 import types
 import unittest
 
-import stubout
+from . import stubout
 
 from re import search as re_search
 
@@ -985,7 +985,9 @@ class MethodSignatureChecker(object):
             Some methods and functions like built-ins can't be inspected.
         """
         try:
-            self._args, varargs, varkw, defaults = inspect.getargspec(method)
+            signature_fn = 'getargspec' if six.PY2 else 'getfullargspec'
+            self._args, varargs, varkw, defaults = getattr(
+                inspect, signature_fn)(method)[:4]
         except TypeError:
             raise ValueError('Could not get argument specification for %r'
                              % (method,))

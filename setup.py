@@ -33,8 +33,6 @@ try:
 except ImportError:
     from distutils.core import setup
 
-from __version__ import __version__
-
 
 def read(*names, **kwargs):
     return io.open(
@@ -70,12 +68,14 @@ install_reqs = [str(p.req) for p in parse_requirements(
 
 setup(
     name='pymox',
-    version=__version__,
     url='http://pymox.rtfd.io',
     license='Apache License, Version 2.0',
     description='Mock object framework',
     include_package_data=True,
+    use_scm_version=True,
+    setup_requires=['pytest-runner', 'setuptools_scm'],
     install_requires=install_reqs,
+    tests_require=['tox', 'pytest', 'pytest-cov', 'coverage', 'codecov'],
     long_description=('%s\n%s' % (
         read('README.rst'),
         re.sub(':[a-z]+:`~?(.*?)`', r'``\1``', read('CHANGELOG.rst')))
@@ -84,7 +84,6 @@ setup(
     author_email='ivan.cr.neto@gmail.com',
     packages=find_packages('.'),
     package_dir={'': '.'},
-    py_modules=[splitext(basename(path))[0] for path in glob('./*.py')],
     zip_safe=False,
     classifiers=classifier_list,
     keywords=[
